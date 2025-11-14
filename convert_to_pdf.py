@@ -125,7 +125,7 @@ def process_folders(input_dir, output_dir, orientation='landscape', skip_existin
         input_path.mkdir(parents=True, exist_ok=True)
         if input_dir == './images-input':
             print("생성된 'images-input' 폴더에 만화책 폴더들을 넣어주세요.")
-            print("예: images-input/드래곤볼_무수정판_01/, images-input/드래곤볼_무수정판_02/, ...")
+            print("예: images-input/만화책_01권/, images-input/만화책_02권/, ...")
         return
     
     # 페이지 방향 설정
