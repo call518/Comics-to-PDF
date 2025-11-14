@@ -1,2 +1,24 @@
-.venv
-images
+# Python 가상환경
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 기본 입력/출력 폴더
+images-input/
+images-output/
+
+# 임시 파일들
+*.tmp
+*.temp
+temp_*/
+
+# 로그 파일들
+*.log
+
+# OS 생성 파일들
+.DS_Store
+Thumbs.db
+desktop.ini
