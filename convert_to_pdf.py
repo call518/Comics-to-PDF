@@ -15,18 +15,26 @@ from reportlab.lib.pagesizes import A4, landscape
 import tempfile
 
 
-def get_jpg_files(folder_path):
-    """폴더에서 JPG 파일들을 알파벳 순으로 가져옵니다."""
-    jpg_extensions = ['.jpg', '.JPG', '.jpeg', '.JPEG']
-    jpg_files = []
+def get_image_files(folder_path):
+    """폴더에서 이미지 파일들을 알파벳 순으로 가져옵니다."""
+    # 지원하는 이미지 형식들 (대소문자 모두 지원)
+    image_extensions = [
+        '.jpg', '.JPG', '.jpeg', '.JPEG',   # JPEG
+        '.png', '.PNG',                     # PNG
+        '.bmp', '.BMP',                     # Bitmap
+        '.gif', '.GIF',                     # GIF
+        '.tiff', '.TIFF', '.tif', '.TIF',   # TIFF
+        '.webp', '.WEBP'                    # WebP
+    ]
+    image_files = []
     
     for file in os.listdir(folder_path):
-        if any(file.endswith(ext) for ext in jpg_extensions):
-            jpg_files.append(os.path.join(folder_path, file))
+        if any(file.endswith(ext) for ext in image_extensions):
+            image_files.append(os.path.join(folder_path, file))
     
     # 알파벳 순으로 정렬
-    jpg_files.sort()
-    return jpg_files
+    image_files.sort()
+    return image_files
 
 
 def create_pdf_from_images(image_files, output_pdf_path, folder_name, page_size=landscape(A4), verbose=True):
@@ -165,18 +173,18 @@ def process_folders(input_dir, output_dir, orientation='landscape', skip_existin
             skip_count += 1
             continue
         
-        # JPG 파일들 가져오기
-        jpg_files = get_jpg_files(str(subdir))
+        # 이미지 파일들 가져오기
+        image_files = get_image_files(str(subdir))
         
-        if not jpg_files:
-            print(f"  건너뜀: JPG 파일이 없습니다.")
+        if not image_files:
+            print(f"  건너띠: 이미지 파일이 없습니다.")
             fail_count += 1
             continue
         
-        print(f"  {len(jpg_files)}장의 이미지 처리 중...")
+        print(f"  {len(image_files)}장의 이미지 처리 중...")
         
         # PDF 생성
-        if create_pdf_from_images(jpg_files, output_pdf_path, folder_name, page_size, verbose=True):
+        if create_pdf_from_images(image_files, output_pdf_path, folder_name, page_size, verbose=True):
             success_count += 1
             file_size = output_pdf_path.stat().st_size / 1024 / 1024  # MB
             print(f"  ✅ 완료: {pdf_filename} ({file_size:.1f}MB)")
