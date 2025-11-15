@@ -1,0 +1,7 @@
+# Comics-to-PDF 변환기 필수 라이브러리
+
+# 이미지 처리 라이브러리
+Pillow>=9.0.0
+
+# PDF 생성 라이브러리
+reportlab>=3.6.0

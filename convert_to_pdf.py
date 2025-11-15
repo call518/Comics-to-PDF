@@ -49,6 +49,12 @@ def create_pdf_from_images(image_files, output_pdf_path, folder_name, page_size=
         c = canvas.Canvas(str(output_pdf_path), pagesize=page_size)
         page_width, page_height = page_size
         
+        # PDF 메타데이터 설정
+        c.setTitle(folder_name)  # 폴더명을 제목으로 설정
+        c.setAuthor("만화책 변환기")  # 저자 설정
+        c.setSubject("만화책 PDF")  # 주제 설정
+        c.setCreator("Comics-to-PDF Converter")  # 생성 프로그램 정보
+        
         total_images = len(image_files)
         start_time = time.time()
         

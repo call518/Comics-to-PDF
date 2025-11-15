@@ -10,6 +10,7 @@
 - **이미지 비율 유지**: 원본 비율을 유지하면서 페이지에 맞게 자동 크기 조정
 - **중앙 정렬 배치**: 이미지를 페이지 중앙에 배치
 - **페이지 방향 선택**: 가로/세로 페이지 설정 가능 (만화책은 가로 권장)
+- **PDF 메타데이터 설정**: 제목(폴더명), 저자, 주제 정보 자동 설정
 - **실시간 진행률**: 처리 상황을 10장마다 표시
 - **기본 경로 자동 생성**: 입출력 폴더가 없으면 자동 생성
 
@@ -22,7 +23,10 @@ python -m venv venv
 source venv/bin/activate  # Linux/Mac
 # 또는 venv\Scripts\activate  # Windows
 
-# 필요한 라이브러리 설치
+# 필요한 라이브러리 설치 (권장 방법)
+pip install -r requirements.txt
+
+# 또는 직접 설치
 pip install Pillow reportlab
 ```
 
@@ -131,6 +135,17 @@ python convert_to_pdf.py -i /path/to/comics -o /path/to/pdfs
 # 출력 경로만 변경
 python convert_to_pdf.py -o ~/Documents/converted_comics
 ```
+
+## 📄 PDF 메타데이터
+
+생성되는 PDF 파일에는 다음 정보가 자동으로 설정됩니다:
+
+- **제목**: 폴더명 (예: `원피스_01권`)
+- **저자**: `만화책 변환기`
+- **주제**: `만화책 PDF`
+- **생성 프로그램**: `Comics-to-PDF Converter`
+
+이 정보는 리디북스, 교보eBook 등 e북 리더 앱에서 책 정보로 표시됩니다.
 
 ## ⚡ 성능 및 품질
 
